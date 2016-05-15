@@ -175,9 +175,9 @@ var compareStr = function(str1, str2) {
 var createArray = function(str){
   return str.length === 0 ? [] : [str.charAt(0)].concat(createArray(str.slice(1)))
 };
-
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
+  return !array.length ? [] : [array.pop()].concat(reverseArr(array));
 };
 
 // 18. Create a new array with a given value and length.
