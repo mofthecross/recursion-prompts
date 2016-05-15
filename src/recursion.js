@@ -124,7 +124,17 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+  if (x < 0 || y < 0) {
+    x = Number(x.toString().replace("-", ""))
+    y = Number(y.toString().replace("-", ""))
+    return Number("-" + String(modulo(x,y)))
+  } else if (y > x) {
+    return x;
+  }
+  var result = y === 1 ? x : x - y;
+  return result <= 2 ? result : modulo(result, y)
 };
+
 
 // 12. Write a function that multiplies two numbers without using the * operator  or
 // JavaScript's Math object.
@@ -145,12 +155,23 @@ var gcd = function(x, y) {
 };
 
 // 15. Write a function that compares each character of two strings and returns true if
-// both are identical.
+// // both are identical.
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2) {
+  function getFirst(str) {
+    return str.toLowerCase().trim().charAt(0);
+  }
+  if (getFirst(str1) !== getFirst(str2)) {
+    return false;
+  }  else {
+    return str1.length === 0 ? true : compareStr(str1.slice(1), str2.slice(1));
+  }
 };
+
+
+
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
