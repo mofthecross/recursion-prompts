@@ -179,11 +179,11 @@ var createArray = function(str){
 var reverseArr = function (array) {
   return !array.length ? [] : [array.pop()].concat(reverseArr(array));
 };
-
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
+  return !length ? [] : [value].concat(buildList(value, length -1))
 };
 
 // 19. Count the occurence of a value inside a list.
