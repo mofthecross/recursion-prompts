@@ -88,13 +88,20 @@ var exponent = function(base, exp) {
   }
 };
 
-
-
 // 8. Determine if a number is a power of two.
 // powerOfTwo(1); // true
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
-var powerOfTwo = function(n) {
+var powerOfTwo = function(n, i) {
+  i = i || 1;
+  var test = i + i;
+  if (n === 1) {
+    return true;
+  } else if (test > n) {
+    return false;
+  } else {
+    return test === n ? true : powerOfTwo(n, test)
+  }
 };
 
 // 9. Write a function that accepts a string a reverses it.
