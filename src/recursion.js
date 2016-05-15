@@ -65,7 +65,15 @@ var sumBelow = function(n) {
 // 6. Get the integers in range (x, y).
 // Example:  range(2, 9);  // [3, 4, 5, 6, 7, 8]
 var range = function(x, y) {
+  if (x > y){
+    x = x - 1;
+    return x <= y ? [] : [x].concat(range(x, y));
+  } else {
+    x = x + 1;
+   return x >= y ? [] : [x].concat(range(x, y));
+  }
 };
+
 
 // 7. Compute the exponent of a number.
 // The exponent of a number says how many times the base number is used as a factor.
