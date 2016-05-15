@@ -106,11 +106,16 @@ var powerOfTwo = function(n, i) {
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
-  return string.length === 1 ? string : string.slice(-1) + reverse(string.slice(0, -1))
+  return string.length === 1 ? string : string.slice(-1) + reverse(string.slice(0, -1));
 };
-
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+  string = string.toLowerCase().trim();
+  if (string.length <= 2) {
+    return string.length === 1 ? true : string.charAt(0) === string.slice(-1);
+  } else {
+    return string.charAt(0) !== string.slice(-1) ? false : palindrome(string.slice(1,-1));
+  }
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
