@@ -205,7 +205,16 @@ var rMap = function(array, callback) {
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 // countKeysInObj(testobj, 'r') // 1
 // countKeysInObj(testobj, 'e') // 2
-var countKeysInObj = function(obj, key) {
+var countKeysInObj = function(obj, key, count) {
+  var count = count || 0;
+  for (var prop in obj) {
+    if (prop === key) {
+      count++;
+    } else if (typeof obj[prop] === "object") {
+      return countKeysInObj(obj[prop], key, count);
+    }
+  }
+  return count;
 };
 
 // 22. Write a function that counts the number of times a value occurs in an object.
@@ -317,13 +326,6 @@ var numToText = function(str) {
   var convert = !Number(str.charAt(0)) ? str.charAt(0) : numStr[Number(str.charAt(0))];
   return !str.length ? convert : convert + numToText(str.slice(1));
 };
-
-
-
-// var numStr = ["zero","one","two","three","four","five","six","seven","eight","nine"];
-// // var convert = numStr[Number(str.charAt(0))] || str.charAt(0);
-//
-// console.log(typeof "5")
 
 // *** EXTRA CREDIT ***
 
