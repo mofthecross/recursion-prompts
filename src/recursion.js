@@ -183,7 +183,7 @@ var reverseArr = function (array) {
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
-  return !length ? [] : [value].concat(buildList(value, length -1))
+  return !length ? [] : [value].concat(buildList(value, length -1));
 };
 
 // 19. Count the occurence of a value inside a list.
@@ -313,7 +313,17 @@ var alternateSign = function(array) {
 // Assume all numbers are single digits (less than 10).
 // numToText("I have 5 dogs and 6 ponies"); // "I have five dogs and six ponies"
 var numToText = function(str) {
+  var numStr = ["zero","one","two","three","four","five","six","seven","eight","nine"];
+  var convert = !Number(str.charAt(0)) ? str.charAt(0) : numStr[Number(str.charAt(0))];
+  return !str.length ? convert : convert + numToText(str.slice(1));
 };
+
+
+
+// var numStr = ["zero","one","two","three","four","five","six","seven","eight","nine"];
+// // var convert = numStr[Number(str.charAt(0))] || str.charAt(0);
+//
+// console.log(typeof "5")
 
 // *** EXTRA CREDIT ***
 
