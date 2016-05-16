@@ -194,9 +194,12 @@ var countOccurrence = function(array, value) {
   return !array.length ? found : found + countOccurrence(array, value);
 };
 
+
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+  var copy = array;
+  return !copy.length ? [] : [callback(copy[0])].concat(rMap(copy.slice(1), callback));
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -259,8 +262,16 @@ var nestedEvenSum = function(obj) {
 
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
-var flatten = function(arrays) {
-};
+// var flatten = function(arrays) {
+//   var curr = arrays[0];
+//   if (Array.isArray(curr)){
+//     var curr2 = curr[0]
+//     return !curr ? []: [curr2].concat(flatten(curr.slice(1)))
+//   }
+//   return !arrays ? [] : [curr].concat(flatten(arrays.slice(1)))
+// };
+
+
 
 // 30. Given a string, return an object containing tallies of each letter.
 // letterTally('potato'); // {'p':1, 'o':2, 't':2, 'a':1}
