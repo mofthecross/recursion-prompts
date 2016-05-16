@@ -198,8 +198,7 @@ var countOccurrence = function(array, value) {
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
-  var copy = array;
-  return !copy.length ? [] : [callback(copy[0])].concat(rMap(copy.slice(1), callback));
+  return !array.length ? [] : [callback(array[0])].concat(rMap(array.slice(1), callback));
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -241,6 +240,8 @@ var nthFibo = function(n) {
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
+  var word = input.shift().toUpperCase();
+  return !input.length ? [word] : [word].concat(capitalizeWords(input));
 };
 
 // 27. Given an array of strings, capitalize the first letter of each index.
