@@ -39,14 +39,9 @@ var arraySum = function(array) {
 
 // 4. Check if a number is even.
 var isEven = function(n) {
-  n = Math.abs(n);
-  if (n === 0) {
-    return true;
-  } else if ( n === 1) {
-    return false;
-  } else {
-    return isEven(n - 2);
-  }
+  num = Math.abs(n);
+  var res = num === 1 ? false : true;
+  return num <= 1 ? res : isEven(num - 2);
 };
 
 // 5. Sum all integers below a given integer.
@@ -205,13 +200,18 @@ var rMap = function(array, callback) {
 // var testobj = {'e': {'x':'y'}, 't':{'r': {'e':'r'}, 'p': {'y':'r'}},'y':'e'};
 // countKeysInObj(testobj, 'r') // 1
 // countKeysInObj(testobj, 'e') // 2
-var countKeysInObj = function(obj, key, count) {
-  var count = count || 0;
+var countKeysInObj = function(obj, key) {
+  var count = 0;
+
+  if (typeof obj === 'string') {
+    return 0;
+  }
+
   for (var prop in obj) {
-    if (prop === key) {
-      count++;
-    } else if (typeof obj[prop] === "object") {
-      return countKeysInObj(obj[prop], key, count);
+    if (prop == key) {
+      count = count + 1 + countKeysInObj(obj[prop], key)
+    } else {
+      count = count + countKeysInObj(obj[prop], key);
     }
   }
   return count;
@@ -222,7 +222,18 @@ var countKeysInObj = function(obj, key, count) {
 // countValuesInObj(testobj, 'r') // 2
 // countValuesInObj(testobj, 'e') // 1
 var countValuesInObj = function(obj, value) {
-};
+  var count = 0;
+  if(typeof obj == 'string' && obj == value){
+    return 1;
+  } else if (typeof obj == 'string'&& obj != value) {
+    return 0;
+  } else {
+    for (var key in obj) {
+      count = count + countValuesInObj(obj[key], value);
+    }
+  }
+  return count;
+}
 
 // 23. Find all keys in an object (and nested objects) by a provided name and rename
 // them to a provided new name while preserving the value stored at that key.
@@ -275,14 +286,10 @@ var nestedEvenSum = function(obj) {
 
 // 29. Flatten an array containing nested arrays.
 // Example: flatten([1,[2],[3,[[4]]],5]); // [1,2,3,4,5]
-// var flatten = function(arrays) {
-//   var curr = arrays[0];
-//   if (Array.isArray(curr)){
-//     var curr2 = curr[0]
-//     return !curr ? []: [curr2].concat(flatten(curr.slice(1)))
-//   }
-//   return !arrays ? [] : [curr].concat(flatten(arrays.slice(1)))
-// };
+var flatten = function(arrays) {
+  var first = Array.isArray(arrays[0]) ? flatten(arrays[0]) : [arrays[0]];
+  return !arrays.length ? [] : first.concat(flatten(arrays.slice(1)));
+};
 
 
 
